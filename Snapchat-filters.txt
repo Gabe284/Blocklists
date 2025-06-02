@@ -1,0 +1,10 @@
+( \ . | ^ )snapads.com$
+analytics.snapchat.com
+app-analytics.snapchat.com
+app-analytics-v2.snapchat.com
+snapchat-proxy.appspot.com
+bolt-gcdn.sc-cdn.net
+gtq6.sct.sc-prod.net
+us-east1-aws.api.snapchat.com
+gcp.api.snapchat.com
+usc.adserver.snapads.com
