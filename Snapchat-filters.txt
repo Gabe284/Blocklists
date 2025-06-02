@@ -1,4 +1,4 @@
-( \ . | ^ )snapads.com$
+(\.|^)snapads.com$
 analytics.snapchat.com
 app-analytics.snapchat.com
 app-analytics-v2.snapchat.com
