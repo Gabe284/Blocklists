@@ -2,7 +2,7 @@
 
 This repository publishes domain blocklists in standard hosts-file syntax.
 
-## NSA-focused combined list
+## NSA-focused agency-related combined list
 
 **[NSA-Combined.txt](NSA-Combined.txt)**
 
@@ -11,9 +11,10 @@ Raw subscription URL:
 `https://raw.githubusercontent.com/Gabe284/Blocklists/main/NSA-Combined.txt`
 
 - Format: `0.0.0.0 domain.example`
-- Deduplicated, lowercase, alphabetically sorted.
-- Combines NSABlocklist, BadBlock's NSA Blocklist – Next Generation, and Adblock the NSA.
-- Source details, normalization rules, and limitations: [SOURCES.md](SOURCES.md).
+- 8,194 unique domains; deduplicated and alphabetically sorted.
+- Includes the original NSABlocklist, BadBlock NSA NG, and Adblock the NSA.
+- Jeff's Counter-Intelligence and Tigthor's NSA-CIA HOSTS projects were inspected and documented. Their normalized domain set is already represented; they add no new agency-related entries.
+- Source details, exclusions, and limitations: [SOURCES.md](SOURCES.md).
 
 ## Scope and warning
 
