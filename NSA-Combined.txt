@@ -1,7 +1,10 @@
-# NSA-focused combined blocklist
-# Generated from three upstream sources; unique domains only.
+# NSA-focused agency-related combined blocklist
+# Generated: 2026-11-05
 # Format: 0.0.0.0 domain
-# See SOURCES.md for attribution, scope, and cautions.
+# Sources: NSABlocklist; BadBlock NSA NG; Adblock the NSA;
+#          Jeff's Counter-Intelligence HOSTS; Tigthor NSA-CIA-Blocklist HOSTS.
+# Jeff and Tigthor HOSTS normalize to the same domain set; no new entries.
+# See SOURCES.md for provenance, scope, and limitations.
 
 0.0.0.0 29palmsbomi-nsn.gov
 0.0.0.0 404.gov
