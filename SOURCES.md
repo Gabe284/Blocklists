@@ -2,42 +2,45 @@
 
 Generated: 2026-11-05
 
-## Included upstreams
+## Included and inspected agency-related sources
 
-| Source | Upstream | Normalized unique domains |
+| Project/source | Upstream file | Result after normalization |
 |---|---|---:|
-| NSABlocklist | https://github.com/Gabe284/Blocklists/blob/main/NSABlocklist.txt | 8193 |
-| NSA Blocklist – Next Generation | https://github.com/celenityy/BadBlock/blob/pages/wildcards-no-star/nsa-blocklist-ng.txt | 2872 |
-| Adblock the NSA | https://github.com/gasull/adblock-nsa/blob/master/filters.txt | 105 |
+| NSABlocklist | https://github.com/Gabe284/Blocklists/blob/main/NSABlocklist.txt | 8,193 unique domains |
+| BadBlock NSA Blocklist – Next Generation | https://github.com/celenityy/BadBlock/blob/pages/wildcards-no-star/nsa-blocklist-ng.txt | 2,872 unique domains |
+| Adblock the NSA | https://github.com/gasull/adblock-nsa/blob/master/filters.txt | 105 unique domains |
+| Jeff's Counter-Intelligence Service Hardening Policies | https://github.com/jeffreyulatan/Jeff-s-Counter-Intelligence-Service-Hardening-Security-Policies/blob/master/HOSTS/HOSTS | Same normalized domain set as the current combined file, plus localhost.localdomain |
+| Tigthor NSA-CIA-Blocklist | https://github.com/tigthor/NSA-CIA-Blocklist/blob/main/HOSTS/HOSTS | Byte-identical upstream HOSTS blob to Jeff's HOSTS file; same normalized set |
 
-Combined unique valid hostnames: **8194**.
+**Published combined unique domains: 8,194.**
 
-The NSA NG list substantially overlaps the existing NSABlocklist; it is not an independent corroboration. The Adblock the NSA source is an older Adblock Plus ruleset associated with historical Shadow Brokers malware infrastructure. Its rules were converted from `||domain^` to hosts entries.
+### Overlap findings
+
+- NSA NG shares 2,871 domains with NSABlocklist and contributes one additional domain.
+- Adblock the NSA contributes no additional domains beyond NSABlocklist.
+- Jeff's HOSTS and Tigthor's HOSTS have the same upstream blob SHA and normalize to the same set; compared with the current combined file, their only additional normalized hostname is `localhost.localdomain`, which is a local system name and is deliberately excluded.
+- Consequently, the agency-related additions from the newly inspected Jeff/Tigthor projects are **zero**. The list's domain count remains 8,194. The sources are documented for provenance without duplicating their contents.
+
+## Projects inspected but excluded
+
+- **InfoSecREDD/Uni-Adblock** (https://github.com/InfoSecREDD/Uni-Adblock): its README describes a broad multi-source adblocker and claims a Government/Surveillance category spanning many entities. It is not a narrowly separable, independently attributable agency-only feed; merging its full aggregation would import unrelated advertising, tracking, and telemetry domains. Excluded.
+- **BadBlock Anti-Monitoring** (https://badblock.celenity.dev/wildcards-no-star/monitoring.txt): targets monitoring/MDM and remote-management infrastructure, not government regulatory agencies specifically. Excluded.
+- **Cybo's Hosts** (https://github.com/donuthack/Hosts): company/app-focused Anti collections, not a regulatory-agency feed. Excluded.
+- **Block List Project** (https://github.com/blocklistproject/Lists): general-purpose ad, tracker, and malware categories, not an agency-specific source. Excluded.
+- **CISA .gov data** (https://github.com/cisagov/dotgov-data): official registry data, not a threat or surveillance blocklist. Its full .gov inventory includes federal, state, local, tribal, and other government domains; blocking it would disable ordinary government services. Excluded.
 
 ## Normalization
 
 - Lowercase DNS names; remove trailing dots.
-- Convert all accepted names to `0.0.0.0 domain`.
+- Convert accepted names to `0.0.0.0 domain`.
 - Deduplicate exact hostnames and sort alphabetically.
 - Ignore comments and source metadata.
 - Exclude IP literals, malformed hostnames, wildcard rules, URL paths, and non-host rules because this output is a DNS hosts file, not an IP firewall.
-- No root-domain collapsing: explicit subdomains remain explicit.
+- Do not collapse domains to parent zones; explicit hostnames remain explicit.
+- Exclude local system names such as `localhost.localdomain`.
 
 ## Important limitations
 
-This is a research-derived, experimental blocklist, not a verified list of current government or intelligence-agency endpoints. Inclusion does not establish ownership, maliciousness, or current operational use. DNS blocking cannot stop ISP-level interception, routing-layer surveillance, compromised endpoints, or traffic to unlisted infrastructure. False positives may disrupt DNS, hosting, education, CDN, and ordinary network services. Test in a separate DNS policy before deploying globally.
+This is an experimental research-derived list, not a verified inventory of current government or intelligence-agency endpoints. Inclusion does not establish ownership, maliciousness, or current operational use. The original material is old in places: Jeff/Tigthor identify a 2019 check date, while Adblock the NSA is a historical Adblock Plus ruleset associated with Shadow Brokers-era malware infrastructure. Do not treat it as a current authoritative threat feed.
 
-## Not included in the merged output
-
-BadBlock's Anti-Monitoring list is a separate 928-entry category targeting monitoring/MDM and remote-management infrastructure. It is broader than NSA-related endpoints and can disrupt legitimate enterprise/device management. It should remain a separate opt-in list:
-- Plain domains: https://badblock.celenity.dev/wildcards-no-star/monitoring.txt
-- ABP: https://badblock.celenity.dev/abp/monitoring.txt
-
-## Candidate related projects
-
-- Jeff's Counter-Intelligence Service Hardening Security Policies: https://github.com/jeffreyulatan/Jeff-s-Counter-Intelligence-Service-Hardening-Security-Policies — historical hosts/IP-range material derived from CHEF-KOCH/NSABlocklist; high false-positive risk, especially super-ranges.
-- Cybo's Hosts: https://github.com/donuthack/Hosts — has separate Anti collections for company/app-specific infrastructure; not NSA-specific.
-- Block List Project: https://github.com/blocklistproject/Lists — maintained category lists in hosts format; general ads, tracking, malware, and telemetry rather than intelligence-specific.
-- notracking/hosts-blocklists: https://github.com/notracking/hosts-blocklists — maintained multi-format aggregation for ads, trackers, malware; not intelligence-specific.
-
-Only the three sources in the Included upstreams table are merged into `NSA-Combined.txt`. Other candidates require separate review and explicit opt-in before inclusion.
+False positives may disrupt DNS, hosting, education, CDN, and ordinary network services. Test in a separate DNS policy before deploying globally. DNS blocking cannot prevent ISP/backbone interception, routing-layer surveillance, compromised endpoints, or traffic to unlisted infrastructure.
